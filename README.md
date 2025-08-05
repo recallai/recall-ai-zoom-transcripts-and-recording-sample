@@ -12,7 +12,7 @@ This app sends a Recall.ai bot into a Zoom call, streams real-time transcripts t
 ### Accounts & API keys
 - A Recall.ai workspace + API key (free to start). Create a workspace and generate an API key in the dashboard.  
   - [Recall.ai](https://www.recall.ai?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
-- A static domain (ngrok is what we use here). For instructions see the [ngrok section]() in the appendix.
+- A static domain (ngrok is what we use here). For instructions see the [ngrok section](https://github.com/recallai/recall-ai-zoom-transcripts-and-recording-sample/blob/main/README.md#ngrok-static-domain-required) in the appendix.
 
 
     
