@@ -375,7 +375,7 @@ You’ll use this domain when configuring webhooks and writing your ngrok.yml (s
 5. Admit bot in Zoom; speak → see real-time transcript appear.
 6. End call → watch `bot.status_change` logs → links appear → click **MP4/MP3**.
 
-[INSERT LOOM HERE]
+[Demo](https://www.loom.com/share/cd2c1024fd894463be5a2e5890603904?sid=9718618e-c6f9-45e4-872b-f3630c37b7b8)
 
 
 ### Links
