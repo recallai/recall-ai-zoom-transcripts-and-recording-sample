@@ -303,13 +303,6 @@ Ensure you enabled transcription when creating the bot:
   }
 ]
 }
-
-
-```json
-"recording_config": {
-  "transcript": { "provider": { "meeting_captions": {} } },
-  "realtime_endpoints": [ ... ]
-}
 ```
 
 #### Real-time transcription
