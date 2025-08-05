@@ -10,15 +10,10 @@ This app sends a Recall.ai bot into a Zoom call, streams real-time transcripts t
 ## 1) Prerequisites
 
 ### Accounts & API keys
-- A Recall.ai workspace + API key (free to start). Create a workspace and generate an API key in the dashboard. See **Authentication** and **Quickstart** docs:  
-
-  - [Recall.ai](https://www.recall.ai?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)  
-  - [Authentication](https://docs.recall.ai/reference/authentication?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
-  - [Getting Started](https://docs.recall.ai/docs/getting-started?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
-
-> **Auth header format:** use `Authorization: <YOUR_RECALL_API_KEY>` (**no “Bearer ” prefix**). Doc examples show `-H "Authorization: $RECALLAI_API_KEY"`.  
->
-> - [Authentication](https://docs.recall.ai/reference/authentication?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
+- A Recall.ai workspace + API key (free to start). Create a workspace and generate an API key in the dashboard.  
+  - [Recall.ai](https://www.recall.ai?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
+    
+> Store the API key somewhere safe (you'll need to add it to your .env file later)
 
 ### Software
 
@@ -73,7 +68,7 @@ pnpm install
 
 ## 3) Configure environment
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root. Copy the following into the `.env` file:
 
 ```bash
 # .env
@@ -275,6 +270,7 @@ You can use this to confirm that:
 
 - **Authorization header** must be the raw key *(no “Bearer ”)*:
 Authorization: $RECALLAI_API_KEY
+- [Authentication](https://docs.recall.ai/reference/authentication?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 - **Webhooks**
 - Real-time transcript is configured in `recording_config.realtime_endpoints` and hits your `/api/webhook`.  
@@ -350,6 +346,8 @@ Ensure you enabled transcription when creating the bot:
 
 - [Recall.ai](https://www.recall.ai?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 - [Quickstart](https://docs.recall.ai/docs/quickstart?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
+- [Authentication](https://docs.recall.ai/reference/authentication?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
+- [Getting Started](https://docs.recall.ai/docs/getting-started?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 **Status & recording webhooks, Real-time transcript webhooks**
 
