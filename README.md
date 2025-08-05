@@ -12,13 +12,13 @@ This app sends a Recall.ai bot into a Zoom call, streams real-time transcripts t
 ### Accounts & API keys
 - A Recall.ai workspace + API key (free to start). Create a workspace and generate an API key in the dashboard. See **Authentication** and **Quickstart** docs:  
 
-  - https://www.recall.ai?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall  
-  - https://docs.recall.ai/reference/authentication?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
-  - https://docs.recall.ai/docs/getting-started?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+  - [Recall.ai](https://www.recall.ai?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)  
+  - [Authentication](https://docs.recall.ai/reference/authentication?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
+  - [Getting Started](https://docs.recall.ai/docs/getting-started?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 > **Auth header format:** use `Authorization: <YOUR_RECALL_API_KEY>` (**no “Bearer ” prefix**). Doc examples show `-H "Authorization: $RECALLAI_API_KEY"`.  
 >
-> - https://docs.recall.ai/reference/authentication?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+> - [Authentication](https://docs.recall.ai/reference/authentication?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 ### Software
 
@@ -125,19 +125,19 @@ You’ll reference https://<your-static-domain>.ngrok-free.app as the public bas
   - `meeting_url` (your Zoom link),
   - `webhook_url: "https://<ngrok-domain>/api/webhook"`,
   - `recording_config.realtime_endpoints` for real-time transcripts.  
-  Docs: https://docs.recall.ai/docs/real-time-webhook-endpoints?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+  Docs: [Real-time Webhook Endpoints](https://docs.recall.ai/docs/real-time-webhook-endpoints?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 - **`pages/api/webhook.ts`** — ACKs fast, handles:
   - `transcript.data` → save + broadcast to WS,
   - `bot.status_change` → on `call_ended`/`done` resolve `recording_id` and fetch media/transcripts,
-  Docs: https://docs.recall.ai/docs/real-time-webhook-endpoints?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall, https://docs.recall.ai/docs/bot-status-change-events?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+  Docs: [Real-time Webhook Endpoints](https://docs.recall.ai/docs/real-time-webhook-endpoints?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall), [Bot status change events](https://docs.recall.ai/docs/bot-status-change-events?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 - **`lib/recall-media.ts`** — calls Recall API:
   - `GET /bot/{id}` until `recordings[]` appears,
   - prefers `media_shortcuts` (direct download URLs),
   - falls back to `video_mixed` / `audio_mixed`,
   - fetches full structured transcript.  
-  Docs: https://docs.recall.ai/docs/bot-status-change-events?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall, https://docs.recall.ai/docs/how-to-get-mixed-audio-async?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+  Docs: [Bot status change events](https://docs.recall.ai/docs/bot-status-change-events?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall), [Mixed Audio](https://docs.recall.ai/docs/how-to-get-mixed-audio-async?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall), [Mixed Video](https://docs.recall.ai/reference/video_mixed_retrieve?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 - **`pages/api/userData.ts`** — returns latest meeting’s transcript + `videoUrl`/`audioUrl` for the UI poller.
 
@@ -198,7 +198,7 @@ ngrok start --all
    - **MP4** (mixed video),
    - **MP3** (mixed audio),
    - **full structured transcript**.  
-   Docs: https://docs.recall.ai/docs/bot-status-change-events?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall, https://docs.recall.ai/docs/how-to-get-mixed-audio-async?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall, https://docs.recall.ai/docs/bot-transcription?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+   Docs: [Bot status change events](https://docs.recall.ai/docs/bot-status-change-events?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall), [Mixed Audio](https://docs.recall.ai/docs/how-to-get-mixed-audio-async?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall), [Transcription](https://docs.recall.ai/docs/bot-transcription?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 8. Wait 5–10s — the UI polls `/api/userData`; **Video** and **Audio** links appear.
 9. *(Optional)* Click **Get Async Transcript & Video** to force retrieval.
 
@@ -275,9 +275,9 @@ Authorization: $RECALLAI_API_KEY
 
 - **Webhooks**
 - Real-time transcript is configured in `recording_config.realtime_endpoints` and hits your `/api/webhook`.  
-  Docs: https://docs.recall.ai/docs/real-time-websocket-endpoints?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+  Docs: [Real-time WebSocket](https://docs.recall.ai/docs/real-time-websocket-endpoints?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 - Bot status change webhooks are delivered via Svix; you can receive them at the `webhook_url` you pass when creating the bot or configure endpoints in your dashboard.  
-  Docs: https://docs.recall.ai/docs/faq-webhooks?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+  Docs: [Svix](https://docs.recall.ai/docs/faq-webhooks?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 - **Artifacts availability**
 - After `done`, `GET /bot/{BOT_ID}` will include `recordings[]`. Use that `recording_id` to fetch media or read `media_shortcuts`.  
@@ -332,7 +332,7 @@ Ensure you enabled transcription when creating the bot:
 ### 401 from Recall API?
 
 - Wrong header or region. Check the header and base URL (e.g., `us-east-1`).  
-  Docs: https://docs.recall.ai/reference/errors?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+  Docs: [Errors](https://docs.recall.ai/reference/errors?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 
 
@@ -352,15 +352,15 @@ Ensure you enabled transcription when creating the bot:
 
 **Get started & docs (Recall.ai):** home page, Quickstart, Authentication  
 
-- https://recall.ai  
-- https://docs.recall.ai/docs/quickstart
+- [Recall.ai](https://www.recall.ai?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
+- [Quickstart](https://docs.recall.ai/docs/quickstart?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 **Status & recording webhooks, Real-time transcript webhooks**
 
-- https://docs.recall.ai/docs/real-time-webhook-endpoints?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
-- https://docs.recall.ai/docs/bot-status-change-events?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+- [Real-time Webhooks](https://docs.recall.ai/docs/real-time-webhook-endpoints?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
+- [Bot Status Change Events](https://docs.recall.ai/docs/bot-status-change-events?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 **Fetching recordings/transcripts**  
 
-- https://docs.recall.ai/reference/recording_retrieve?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
-- https://docs.recall.ai/reference/transcript_retrieve?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall
+- [Retrieve Recordings](https://docs.recall.ai/reference/recording_retrieve?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
+- [Retrieve Transcripts](https://docs.recall.ai/reference/transcript_retrieve?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
