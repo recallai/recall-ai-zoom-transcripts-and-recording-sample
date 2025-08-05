@@ -1,4 +1,4 @@
-# Meeting Bot Web App (Recall.ai + Next.js)
+# Meeting Bot Web App
 
 This app sends a Recall.ai bot into a Zoom call, streams real-time transcripts to the browser, and—when the call ends—fetches the final **MP4 video**, **MP3 audio**, and **full transcript**, then displays download links.
 
