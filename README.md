@@ -45,7 +45,6 @@ This app sends a Recall.ai bot into a Zoom call, streams real-time transcripts t
 
 > You can swap `brew`/`choco` for GUI installers if you prefer.
 
----
 
 ### Ensure PostgreSQL is running and initialized
 
