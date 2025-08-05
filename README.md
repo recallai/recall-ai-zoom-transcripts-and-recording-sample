@@ -337,8 +337,6 @@ To receive webhook events from Recall.ai, your app must be accessible via a **pu
 - A **free ngrok account**
 - A **reserved (static) domain**
 
----
-
 ##### 1. Install ngrok
 
 **macOS:**
