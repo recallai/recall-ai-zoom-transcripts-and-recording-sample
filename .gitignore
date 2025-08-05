@@ -19,3 +19,6 @@ prisma/dev.db-journal
 .next
 .next-cache
 .next-env.d.ts
+.DS_Store
+
+prisma/migrations/*
