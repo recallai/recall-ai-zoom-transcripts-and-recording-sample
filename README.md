@@ -66,9 +66,9 @@ createdb recall_demo
 git clone <this-repo>
 cd <this-repo>
 ```
-# install deps
+### install deps
 npm install
-# or
+ or
 pnpm install
 
 ## 3) Configure environment
@@ -84,7 +84,7 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/recall_demo?schema=p
 RECALL_API_KEY="<YOUR_RECALL_API_KEY>"
 ```
 
-Run Prisma (only after PostgreSQL is running and the database exists): 
+**Run Prisma** (only after PostgreSQL is running and the database exists): 
 
 ```bash
 npx prisma generate
@@ -201,12 +201,16 @@ ngrok start --all
 8. Wait 5–10s — the UI polls `/api/userData`; **Video** and **Audio** links appear.
 9. *(Optional)* Click **Get Async Transcript & Video** to force retrieval.
 
+<br>
+<br>
 
-## 8) Inspect saved data in PostgreSQL (Optional)
+## Appendix
+
+### Inspect saved data in PostgreSQL (Optional)
 
 Once your app is running and has received a real-time transcript or finished a call, you can inspect the saved data in Postgres directly.
 
-### Connect to Postgres
+#### Connect to Postgres
 
 Use the `psql` CLI to open a connection to your local Postgres instance:
 
@@ -221,14 +225,14 @@ psql -h localhost -U postgres -d recall_ai_dev
 If prompted for a password, use the one configured for your local Postgres setup (e.g. `postgres` by default if unchanged).
 
 
-### List all tables
+#### List all tables
 
 ```sql
 \dt
 ```
 This will show all tables — you should see "Meeting" and "Transcript" if migrations ran correctly.
 
-### View recent meetings
+#### View recent meetings
 
 ```sql
 SELECT * FROM "Meeting" ORDER BY "createdAt" DESC LIMIT 5;
@@ -242,7 +246,7 @@ This will show the latest meetings. Useful columns to check:
 - `createdAt`: When the meeting entry was saved  
 
 
-### View transcripts for a meeting
+#### View transcripts for a meeting
 
 First, find the `id` of the meeting you want to inspect (from the `"Meeting"` table), then run:
 
@@ -256,7 +260,7 @@ This shows all transcript lines tied to that meeting. You’ll see:
 - `timestamp`: When it was spoken  
 
 
-### Exit Postgres CLI
+#### Exit Postgres CLI
 
 Type `\q` and press Enter to quit the Postgres session.
 
@@ -267,7 +271,7 @@ You can use this to confirm that:
 - Post-call artifacts like `videoUrl`, `audioUrl`, and `recordingId` are being set after `bot.status_change` events
 
 
-## 8) Configuration notes
+### Configuration notes
 
 - **Authorization header** must be the raw key *(no “Bearer ”)*:
 Authorization: $RECALLAI_API_KEY
@@ -283,7 +287,7 @@ Authorization: $RECALLAI_API_KEY
   Docs: https://docs.recall.ai
 
 
-## 9) Troubleshooting
+### Troubleshooting
 
 **No transcripts?**  
 Ensure you enabled transcription when creating the bot:
@@ -308,12 +312,12 @@ Ensure you enabled transcription when creating the bot:
 }
 ```
 
-### Real-time transcription
+#### Real-time transcription
 
 - **Real-time transcription must be explicitly enabled.** 
 
 
-### No media links after call ends?
+#### No media links after call ends?
 
 - Check server logs around `bot.status_change → done`.
 - Confirm your `RECALL_API_KEY` and that the `Authorization` header **does not** include “Bearer”.
@@ -321,21 +325,21 @@ Ensure you enabled transcription when creating the bot:
 
 
 
-### WS relay not connecting through ngrok?
+#### WS relay not connecting through ngrok?
 
 - Either expose port **4000** with a second ngrok tunnel, **or**
 - Proxy `/recall` through Next.js so the browser connects to the same domain.
 
 
 
-### 401 from Recall API?
+#### 401 from Recall API?
 
 - Wrong header or region. Check the header and base URL (e.g., `us-east-1`).  
   Docs: [Errors](https://docs.recall.ai/reference/errors?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 
 
-## 10) Demo flow (for a quick video)
+### Demo flow (for a quick video)
 
 1. Three terminals: `npm run dev`, `ts-node ws-server.ts`, `ngrok start --all`.
 2. Show `.env` with `DATABASE_URL` and `RECALL_API_KEY` (no “Bearer ”).
@@ -347,7 +351,7 @@ Ensure you enabled transcription when creating the bot:
 [INSERT LOOM HERE]
 
 
-## 11) Links
+### Links
 
 **Get started & docs (Recall.ai):** home page, Quickstart, Authentication  
 
