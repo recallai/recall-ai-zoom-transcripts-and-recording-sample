@@ -1,4 +1,4 @@
-Zoom Meeting Bot with Realtime Transcripts & Post-Call Recordings (Recall.ai)
+# Zoom Meeting Bot with Realtime Transcripts & Post-Call Recordings (Recall.ai)
 
 This app sends a Recall.ai bot into a Zoom call, streams real-time transcripts to the browser, and—when the call ends—fetches the final **MP4 video**, **MP3 audio**, and **full transcript**, then displays download links as well as players for the audio and video in the web app.
 
