@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Meeting {
+  id         String      @id @default(cuid())
+  userId     String
+  meetingUrl String
+  externalId String      @unique
+  transcript Transcript[]
+  videoUrl   String?
+  audioUrl   String?
+  createdAt  DateTime    @default(now())
+  botId String @default("")
+  recordingId  String @default("")
+}
+
+model Transcript {
+  id        String   @id @default(cuid())
+  meeting   Meeting  @relation(fields: [meetingId], references: [id])
+  meetingId String
+  text      String
+  timestamp DateTime @default(now())
+  speaker String @default("Unknown speaker")
+}

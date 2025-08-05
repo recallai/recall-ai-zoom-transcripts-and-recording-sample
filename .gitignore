@@ -1,0 +1,21 @@
+# Node dependencies
+node_modules
+
+# Production builds
+.next
+
+# Env files
+.env
+.env.*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+
+# Misc
+.next
+.next-cache
+.next-env.d.ts
