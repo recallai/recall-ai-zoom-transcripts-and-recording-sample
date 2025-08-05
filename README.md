@@ -1,6 +1,6 @@
-# Meeting Bot Web App
+Zoom Meeting Bot with Realtime Transcripts & Post-Call Recordings (Recall.ai)
 
-This app sends a Recall.ai bot into a Zoom call, streams real-time transcripts to the browser, and—when the call ends—fetches the final **MP4 video**, **MP3 audio**, and **full transcript**, then displays download links.
+This app sends a Recall.ai bot into a Zoom call, streams real-time transcripts to the browser, and—when the call ends—fetches the final **MP4 video**, **MP3 audio**, and **full transcript**, then displays download links as well as players for the audio and video in the web app.
 
 **Stack:** Next.js API routes, Prisma + PostgreSQL, a tiny Node WebSocket relay, ngrok (static domain), Recall.ai Meeting Bot API.
 
@@ -12,6 +12,9 @@ This app sends a Recall.ai bot into a Zoom call, streams real-time transcripts t
 ### Accounts & API keys
 - A Recall.ai workspace + API key (free to start). Create a workspace and generate an API key in the dashboard.  
   - [Recall.ai](https://www.recall.ai?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
+- A static domain (ngrok is what we use here). For instructions see the [ngrok section]() in the appendix.
+
+
     
 > Store the API key somewhere safe (you'll need to add it to your .env file later)
 
@@ -327,6 +330,43 @@ Ensure you enabled transcription when creating the bot:
   Docs: [Errors](https://docs.recall.ai/reference/errors?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 
 
+#### ngrok (Static Domain Required)
+
+To receive webhook events from Recall.ai, your app must be accessible via a **public, static domain**. This requires:
+
+- A **free ngrok account**
+- A **reserved (static) domain**
+
+---
+
+##### 1. Install ngrok
+
+**macOS:**
+```bash
+brew install ngrok/ngrok/ngrok
+```
+
+**Windows:**
+```bash
+choco install ngrok
+```
+##### 2. Authenticate ngrok
+Grab you auth token from the ngrok dashboard then run: 
+```bash
+ngrok config add-authtoken <YOUR_AUTHTOKEN>
+```
+
+##### 3. Reserve a static domain
+
+1. Go to the ngrok Reserved Domains dashboard
+2. Click "+ Reserve Domain"
+3. Choose something like:
+```bash
+zoom-bot.ngrok-free.app
+```
+You’ll use this domain when configuring webhooks and writing your ngrok.yml (see Step 4 in the README).
+
+> A static domain ensures Recall.ai can consistently reach your app with real-time events.
 
 ### Demo flow (for a quick video)
 
