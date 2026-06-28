@@ -386,6 +386,7 @@ You’ll use this domain when configuring webhooks and writing your ngrok.yml (s
 - [Quickstart](https://docs.recall.ai/docs/quickstart?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 - [Authentication](https://docs.recall.ai/reference/authentication?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
 - [Getting Started](https://docs.recall.ai/docs/getting-started?utm_source=github&utm_medium=sampleapp&utm_campaign=zoom-bot-recall)
+- [Zoom App Submission](https://www.recall.ai/blog/explaining-the-zoom-app-submission-process)
 
 **Status & recording webhooks, Real-time transcript webhooks**
 
